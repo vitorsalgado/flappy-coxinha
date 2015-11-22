@@ -1,0 +1,20 @@
+{
+  "name": "flappy-sp",
+  "version": "0.0.1",
+  "homepage": "https://github.com/vitorsalgado/flappy-sp",
+  "authors": [
+    "Vitor Hugo Salgado <vsalgadopb@gmail.com>"
+  ],
+  "description": "",
+  "license": "GNU GENERAL PUBLIC LICENSE",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}

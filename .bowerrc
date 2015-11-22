@@ -1,0 +1,5 @@
+{
+  "directory": "resources/libs/",
+  "strict-ssl": false,
+  "json": "bower.json"
+}

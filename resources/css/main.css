@@ -1,0 +1,64 @@
+body {
+    overflow: hidden;
+    color: #2d313f;
+}
+
+.wrapper {
+    padding-top: 20px;
+    background: radial-gradient(ellipse at center, #eaeff2 0, rgba(212, 221, 228, 0.5) 50%), linear-gradient(to bottom, #cae1f4 0, rgba(125, 185, 232, 0) 100%);
+}
+
+.wrapper:after {
+    z-index: 0;
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background: url(../../resources/img/background.png);
+}
+
+.navbar {
+    z-index: 1;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+    border-bottom: 1px solid #ccc;
+}
+
+#game-container {
+    width: 1024px;
+    height: 600px;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+#points {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    width: 150px;
+    height: 100px;
+    margin-left: -75px;
+    background: transparent;
+    font-size: 45px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 3px 1px 8px #000;
+}
+
+#message {
+    position: absolute;
+    top: 250px;
+    left: 50%;
+    width: 600px;
+    height: 100px;
+    margin-left: -300px;
+    background: transparent;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 3px 1px 8px #000;
+}
+
+h2 {
+    text-align: center;
+}

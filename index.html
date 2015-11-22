@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="author" content="Vitor Hugo Salgado">
+    <meta name="description" content="">
+
+    <title>Flappy Bird SP</title>
+
+    <link rel="stylesheet" href="resources/css/main.css"/>
+    <link rel="stylesheet" href="resources/libs/bootstrap/dist/css/bootstrap.min.css"/>
+</head>
+<body>
+<header class="header navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header navbar-left">
+            <button type="button" data-toggle="collapse" data-target=".navbar-collapse"
+                    class="navbar-toggle collapsed">
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            <a href="/" title="Home" class="navbar-brand"><strong>FLAPPY BIRD SP</strong></a>
+        </div>
+        <div class="navbar-right">
+            <nav class="collapse navbar-collapse pull-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="/about" title="About">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<div class="wrapper">
+    <div id="game-container"></div>
+
+    <h2 id="message"></h2>
+
+    <h2 id="points"></h2>
+</div>
+
+<script type="text/javascript" src="resources/libs/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="resources/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="js/player.js"></script>
+<script type="text/javascript" src="js/input_manager.js"></script>
+<script type="text/javascript" src="js/game_configuration.js"></script>
+<script type="text/javascript" src="js/resources_loader.js"></script>
+<script type="text/javascript" src="js/html_actuator.js"></script>
+<script type="text/javascript" src="js/game_manager.js"></script>
+<script type="text/javascript" src="js/application.js"></script>
+
+</body>
+</html>
