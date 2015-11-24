@@ -1,8 +1,11 @@
 window.requestAnimationFrame(function () {
-    var resourcesLoader = new ResourcesLoader();
-    var actuator = new HtmlActuator(Configuration, resourcesLoader);
-    var inputManager = new InputManager();
-    var player = new Player();
+    var resourcesManager = new ResourcesManager();
 
-    GameManager.init(Configuration, actuator, inputManager, player);
+    resourcesManager.loadAll(function () {
+        var actuator = new HtmlActuator(Configuration, resourcesManager);
+        var inputManager = new InputManager();
+        var player = new Player(resourcesManager);
+
+        GameManager.init(Configuration, actuator, inputManager, player);
+    });
 });

@@ -1,11 +1,11 @@
 body {
     overflow: hidden;
     color: #2d313f;
+    font-size: 14px;
 }
 
 .wrapper {
     padding-top: 20px;
-    background: radial-gradient(ellipse at center, #eaeff2 0, rgba(212, 221, 228, 0.5) 50%), linear-gradient(to bottom, #cae1f4 0, rgba(125, 185, 232, 0) 100%);
 }
 
 .wrapper:after {
@@ -15,7 +15,7 @@ body {
     top: 0;
     bottom: 0;
     width: 100%;
-    background: url(../../resources/img/background.png);
+    background: url(../img/background.png);
 }
 
 .navbar {
@@ -26,10 +26,18 @@ body {
 }
 
 #game-container {
-    width: 1024px;
-    height: 600px;
+    width: 1036px;
+    height: 512px;
     margin: 0 auto;
     z-index: 1;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #e7e7e7;
+    position: relative;
+    display: block;
+    background: #F8F8F8;
+    box-shadow: #ccc 2px 2px;
+
 }
 
 #points {
@@ -61,4 +69,18 @@ body {
 
 h2 {
     text-align: center;
+    z-index: 100;
+}
+
+footer{
+    text-align: center;
+    padding: 5px 0;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

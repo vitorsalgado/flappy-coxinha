@@ -12,9 +12,9 @@ function InputManager() {
             keyPressed = e.keyCode || e.which;
         });
 
-        var gameCanvas = document.getElementById('game-canvas');
+        var wrapper = document.getElementById('wrapper');
 
-        gameCanvas.addEventListener('click', function (e) {
+        wrapper.addEventListener('click', function () {
             mouseClick = 1;
         });
     };
@@ -22,4 +22,8 @@ function InputManager() {
     this.isPlayerAction = function () {
         return keyPressed === 32 || keyPressed === 13 || mouseClick === 1;
     };
+
+    this.isPausePressed = function () {
+        return keyPressed === 112;
+    }
 }
