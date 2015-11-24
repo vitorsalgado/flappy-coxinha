@@ -7,8 +7,12 @@ var GameManager = (function () {
         inputManager: null,
         player: null,
 
-        stage: 'START',
-        trees: [],
+        actions: {
+            START: 'START',
+            PAUSE: 'PAUSE',
+            GAME_OVER: 'GAME_OVER',
+            PLAYER_ACTION: 'PLAYER_ACTION'
+        },
 
         stageActions: {
             'START': null,
@@ -17,24 +21,28 @@ var GameManager = (function () {
             'PLAYER_ACTION': null
         },
 
+        stage: '',
+        trees: [],
+
         init: function (configuration, actuator, inputManager, player) {
             var self = this;
 
-            self.stageActions['START'] = self.onStart;
-            self.stageActions['PAUSE'] = self.onPause;
-            self.stageActions['GAME_OVER'] = self.onGameOver;
-            self.stageActions['PLAYER_ACTION'] = self.onPlayerAction;
+            self.stage = Game.actions.START;
+
+            self.stageActions[Game.actions.START] = self.onStart;
+            self.stageActions[Game.actions.PAUSE] = self.onPause;
+            self.stageActions[Game.actions.GAME_OVER] = self.onGameOver;
+            self.stageActions[Game.actions.PLAYER_ACTION] = self.onPlayerAction;
 
             self.config = configuration;
             self.actuator = actuator;
             self.inputManager = inputManager;
             self.player = player;
 
-            self.actuator.setup(function () {
-                self.newGame();
-                self.inputManager.listen();
-                self.startLoop();
-            });
+            self.actuator.setup();
+            self.newGame();
+            self.inputManager.listen();
+            self.startLoop();
         },
 
         startLoop: function () {
@@ -48,8 +56,6 @@ var GameManager = (function () {
 
         update: function () {
             var isPlayerAction = Game.inputManager.isPlayerAction();
-
-            console.log(Game.inputManager.keyPressed);
 
             Game.stageActions[Game.stage](isPlayerAction);
             Game.inputManager.clear();
@@ -79,8 +85,8 @@ var GameManager = (function () {
 
             if (isPlayerAction) {
                 player.gravity = Game.config.player.gravity - Game.config.physics.gravity;
-            } else if (Game.inputManager.keyPressed === 112) {
-                Game.stage = 'pause';
+            } else if (Game.inputManager.isPausePressed()) {
+                Game.stage = 'PAUSE';
             } else if (player.gravity !== Game.config.player.gravity) {
                 player.gravity += Game.config.physics.gravity / Game.config.physics.jumpLoops;
             }
@@ -89,10 +95,6 @@ var GameManager = (function () {
 
             Game.player.frameCount = Game.player.frameCount || 0;
             Game.player.frameCount = Game.player.frameCount === 5 ? 0 : Game.player.frameCount + 1;
-
-            if (!Game.player.frameCount) {
-                Game.player.wingUp = !Game.player.wingUp;
-            }
 
             for (var i = 0; i < Game.trees.length; i++) {
                 var treePair = Game.trees[i];

@@ -17,7 +17,7 @@ var Configuration = {
     tree: {
         speed: 10,
         distance: 350,
-        width: 82,
+        width: 80,
         height: 381
     },
 

@@ -1,36 +1,32 @@
-function HtmlActuator(configuration, resourcesLoader) {
+function HtmlActuator(configuration, resourcesManager) {
     var config = configuration;
     var gameWidth = config.game.size.width;
     var gameHeight = config.game.size.height;
     var gameCanvas = null;
     var bufferCanvas = null;
-    var resources = null;
     var gameContainer = document.getElementById('game-container');
     var pointsContainer = document.getElementById('points');
     var messageContainer = document.getElementById('message');
+    var brick = resourcesManager.get('brick');
 
-    this.setup = function (onSetupCompleted) {
+    this.setup = function () {
         gameCanvas = createCanvas('game-canvas');
         bufferCanvas = createCanvas('buffer-canvas');
 
         gameContainer.appendChild(gameCanvas);
-
-        resourcesLoader.loadImages(function (res) {
-            resources = res;
-            onSetupCompleted();
-        });
     };
 
     this.actuate = function (player, trees, gameStage) {
         clearBufferCanvas();
 
         var ctx = bufferCanvas.getContext('2d');
-        var backgroundResource = resources.bg;
+        var backgroundResource = resourcesManager.get('bg');
 
         ctx.drawImage(backgroundResource, 0, 0, backgroundResource.width, backgroundResource.height, 0, 0, gameWidth, gameHeight);
 
-        for (var i = 0; i < trees.length; i++)
+        for (var i = 0; i < trees.length; i++) {
             drawTreePair(trees[i], player);
+        }
 
         player.renderTo(bufferCanvas);
 
@@ -42,7 +38,7 @@ function HtmlActuator(configuration, resourcesLoader) {
                 showMessage('Game paused');
                 break;
             case 'GAME_OVER':
-                showMessage('Game Over. Press ENTER or Click to start a new game');
+                showMessage('Game Over!<br/>Press ENTER or Click to start a new game');
                 showScore(player.points);
                 break;
             case 'PLAYER_ACTION':
@@ -69,9 +65,8 @@ function HtmlActuator(configuration, resourcesLoader) {
             {x: tree.x, y: treeUpY, w: treeWidth, h: treeHeight}
         ];
 
-        ctx.fillStyle = 'brown';
-        ctx.fillRect(tree.x, treeDownY, treeWidth, treeHeight);
-        ctx.fillRect(tree.x, treeUpY, treeWidth, treeHeight);
+        ctx.drawImage(brick, tree.x, treeDownY);
+        ctx.drawImage(brick, tree.x, treeUpY);
     };
 
     createCanvas = function (identifier) {
@@ -106,6 +101,6 @@ function HtmlActuator(configuration, resourcesLoader) {
     };
 
     showScore = function (playerScore) {
-        pointsContainer.innerHTML = playerScore;
+        pointsContainer.innerHTML = 'score ' + playerScore;
     };
 }
